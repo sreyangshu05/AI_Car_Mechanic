@@ -1,0 +1,668 @@
+.mechanic-app {
+  --ink: #eaf5f6;
+  --muted: #a3b7bd;
+  --accent: #46e0bb;
+  --accent-bright: #8affd9;
+  --accent-dark: #063c39;
+  --line: rgba(173, 216, 220, 0.16);
+  --panel: #10242e;
+
+min-height: 100vh;
+  padding: 0 24px 80px;
+  color: var(--ink);
+  background:
+    radial-gradient(
+      ellipse 650px 400px at 82% 4%,
+      rgba(43, 181, 151, 0.16),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 680px 460px at 10% 58%,
+      rgba(37, 111, 148, 0.15),
+      transparent 75%
+    ),
+    linear-gradient(145deg, #081117 0%, #0d1b23 48%, #061015 100%);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+.mechanic-app *,
+.mechanic-app *::before,
+.mechanic-app *::after {
+  box-sizing: border-box;
+}
+
+.mechanic-app > header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 27px 4px;
+  border-bottom: 1px solid rgba(205, 244, 240, 0.12);
+}
+
+.mechanic-app > header::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(101, 233, 200, 0.5),
+    transparent
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.mechanic-app .brand {
+  color: #d9fff3;
+  font-size: 14px;
+  font-weight: 850;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 24px rgba(70, 224, 187, 0.28);
+}
+
+.mechanic-app .sub {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.025em;
+}
+
+.mechanic-app .shell {
+  position: relative;
+  isolation: isolate;
+  max-width: 880px;
+  margin: 48px auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(196, 239, 237, 0.22);
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow:
+    0 2px 2px rgba(255, 255, 255, 0.08) inset,
+    0 -2px 4px rgba(0, 0, 0, 0.28) inset,
+    0 18px 30px rgba(0, 0, 0, 0.26),
+    0 42px 90px rgba(0, 0, 0, 0.4),
+    0 0 0 7px rgba(136, 244, 220, 0.025);
+}
+
+.mechanic-app .shell::before {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 42px;
+  left: 42px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(225, 255, 249, 0.66),
+    transparent
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.mechanic-app .intro {
+  position: relative;
+  padding: 46px 48px 42px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(
+      circle at 87% 20%,
+      rgba(91, 240, 199, 0.2),
+      transparent 36%
+    ),
+    linear-gradient(132deg, #17313b 0%, #10242d 57%, #0d2930 100%);
+}
+
+.mechanic-app .intro::after {
+  position: absolute;
+  right: -105px;
+  bottom: -215px;
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(138, 255, 217, 0.13);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 36px rgba(138, 255, 217, 0.025),
+    0 0 0 80px rgba(138, 255, 217, 0.018);
+  content: "";
+  pointer-events: none;
+}
+
+.mechanic-app .intro > * {
+  position: relative;
+  z-index: 1;
+}
+
+.mechanic-app .intro span {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 13px;
+  border: 1px solid rgba(107, 245, 199, 0.29);
+  border-radius: 999px;
+  color: var(--accent-bright);
+  background: rgba(36, 152, 118, 0.14);
+  box-shadow: 0 0 18px rgba(42, 216, 161, 0.09) inset;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.mechanic-app h1 {
+  max-width: 730px;
+  margin: 22px 0 15px;
+  color: #f0fffc;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 760;
+  line-height: 1.13;
+  letter-spacing: -0.05em;
+  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.2);
+}
+
+.mechanic-app .intro p {
+  max-width: 650px;
+  margin: 0;
+  color: #b4cbce;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.mechanic-app .chat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  min-height: 285px;
+  max-height: min(70vh, 720px);
+  padding: 36px 48px;
+  overflow-y: auto;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(57, 146, 142, 0.08),
+      transparent 58%
+    ),
+    #0e2029;
+  scrollbar-color: #34605e transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+.mechanic-app .chat > div[aria-hidden="true"] {
+  flex: 0 0 1px;
+  width: 1px;
+  height: 1px;
+}
+
+.mechanic-app .bubble {
+  max-width: min(85%, 620px);
+  padding: 16px 19px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.mechanic-app .bubble.assistant {
+  border-color: rgba(196, 239, 237, 0.13);
+  border-bottom-left-radius: 5px;
+  color: #e6f3f2;
+  background: linear-gradient(145deg, #213740, #192d36);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.07) inset,
+    0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+.mechanic-app .bubble.user {
+  align-self: flex-end;
+  border-color: rgba(172, 255, 231, 0.35);
+  border-bottom-right-radius: 5px;
+  color: #062723;
+  background: linear-gradient(145deg, #a0ffdc 0%, #48dcb5 55%, #27b99c 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 12px 24px rgba(21, 173, 135, 0.16);
+}
+
+.mechanic-app .diagnosis {
+  position: relative;
+  width: 100%;
+  margin-top: 8px;
+  padding: 27px;
+  overflow: visible;
+  border: 1px solid rgba(129, 244, 199, 0.36);
+  border-radius: 19px;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(67, 227, 178, 0.16),
+      transparent 42%
+    ),
+    linear-gradient(145deg, #193d3e, #112d33);
+  box-shadow:
+    0 1px 0 rgba(232, 255, 246, 0.15) inset,
+    0 18px 35px rgba(0, 0, 0, 0.19);
+}
+
+.mechanic-app .chat:has(.diagnosis) {
+  max-height: min(82vh, 900px);
+}
+
+.mechanic-app .diagnosis::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: linear-gradient(
+    180deg,
+    #a1ffdc,
+    #41d6ad,
+    rgba(65, 214, 173, 0.08)
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.mechanic-app .diagnosis small {
+  color: var(--accent-bright);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.mechanic-app .diagnosis h2 {
+  margin: 12px 0 9px;
+  color: #f1fffa;
+  font-size: 23px;
+  letter-spacing: -0.03em;
+}
+
+.mechanic-app .diagnosis p {
+  margin: 0 0 16px;
+  color: #c2d8d5;
+  line-height: 1.7;
+}
+
+.mechanic-app .diagnosis b {
+  display: block;
+  margin-bottom: 20px;
+  color: #dcf4ea;
+  font-size: 13px;
+}
+
+.mechanic-app button,
+.mechanic-app .upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.mechanic-app button {
+  border-color: #8dffda;
+  color: #082b29;
+  background: linear-gradient(180deg, #a6ffdf 0%, #53ddb6 48%, #30bd9e 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 -2px 0 rgba(6, 76, 61, 0.2) inset,
+    0 5px 0 #13765f,
+    0 12px 20px rgba(21, 181, 138, 0.18);
+}
+
+.mechanic-app button:hover:not(:disabled) {
+  background: linear-gradient(180deg, #c0ffe9, #63ebc5 55%, #3dcca8);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 5px 0 #13765f,
+    0 15px 25px rgba(21, 181, 138, 0.25);
+  transform: translateY(-2px);
+}
+
+.mechanic-app button:active:not(:disabled) {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 1px 0 #13765f,
+    0 4px 10px rgba(21, 181, 138, 0.12);
+  transform: translateY(3px);
+}
+
+.mechanic-app button:disabled {
+  opacity: 0.46;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.mechanic-app button:focus-visible,
+.mechanic-app .upload:focus-within,
+.mechanic-app textarea:focus-visible,
+.mechanic-app input:focus-visible {
+  outline: 3px solid #a6ffdf;
+  outline-offset: 3px;
+}
+
+.mechanic-app .error {
+  margin: 0 48px 18px;
+  padding: 13px 16px;
+  border: 1px solid rgba(255, 197, 111, 0.32);
+  border-radius: 11px;
+  color: #ffe3b2;
+  background: #3b2d25;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mechanic-app .shell > form {
+  padding: 24px 48px 20px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, #142a34, #112630);
+}
+
+.mechanic-app textarea,
+.mechanic-app input {
+  width: 100%;
+  border: 1px solid rgba(180, 226, 225, 0.2);
+  border-radius: 12px;
+  color: #effffc;
+  background: #0b1d26;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.27) inset,
+    0 1px 0 rgba(255, 255, 255, 0.035);
+  font: inherit;
+  font-size: 14px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.mechanic-app textarea:hover,
+.mechanic-app input:hover {
+  border-color: rgba(152, 238, 219, 0.4);
+}
+
+.mechanic-app textarea:focus,
+.mechanic-app input:focus {
+  border-color: #6ef0c6;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.2) inset,
+    0 0 0 3px rgba(78, 224, 183, 0.12);
+}
+
+.mechanic-app textarea::placeholder,
+.mechanic-app input::placeholder {
+  color: #8da6ab;
+}
+
+.mechanic-app input[type="date"],
+.mechanic-app input[type="time"] {
+  color-scheme: dark;
+}
+
+.mechanic-app .shell > form textarea {
+  display: block;
+  min-height: 106px;
+  padding: 16px;
+  resize: vertical;
+}
+
+.mechanic-app .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 15px;
+}
+
+.mechanic-app .upload {
+  border-color: rgba(141, 233, 209, 0.25);
+  color: #b5ffe4;
+  background: linear-gradient(180deg, #25423f, #183330);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 4px 0 #102927,
+    0 9px 15px rgba(0, 0, 0, 0.14);
+}
+
+.mechanic-app .upload:hover {
+  border-color: rgba(141, 233, 209, 0.55);
+  background: linear-gradient(180deg, #2e514b, #1d3b36);
+  transform: translateY(-2px);
+}
+
+.mechanic-app .tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 48px 28px;
+  background: #112630;
+}
+
+.mechanic-app .history {
+  margin: 0 48px 28px;
+  padding: 22px;
+  border: 1px solid rgba(152, 235, 213, 0.18);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #142d36, #10252e);
+}
+
+.mechanic-app .history h3 {
+  margin: 0 0 14px;
+  color: #e8fbf5;
+  font-size: 16px;
+}
+
+.mechanic-app .history > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.mechanic-app .history button {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-color: rgba(152, 235, 213, 0.18);
+  border-radius: 10px;
+  color: #d9f4ed;
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: none;
+  text-align: left;
+}
+
+.mechanic-app .history button:hover {
+  border-color: rgba(152, 235, 213, 0.42);
+  background: rgba(76, 197, 160, 0.12);
+  transform: none;
+}
+
+.mechanic-app .tools button,
+.mechanic-app .booking > button {
+  border-color: rgba(152, 235, 213, 0.32);
+  color: #c2ffe9;
+  background: linear-gradient(180deg, #294943, #1a3735);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 4px 0 #0b2423,
+    0 10px 18px rgba(0, 0, 0, 0.16);
+}
+
+.mechanic-app .tools button:hover:not(:disabled),
+.mechanic-app .booking > button:hover:not(:disabled) {
+  border-color: rgba(152, 235, 213, 0.6);
+  background: linear-gradient(180deg, #355b51, #21433d);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.16) inset,
+    0 4px 0 #0b2423,
+    0 13px 22px rgba(0, 0, 0, 0.2);
+}
+
+.mechanic-app .tools button:active:not(:disabled),
+.mechanic-app .booking > button:active:not(:disabled) {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 1px 0 #0b2423;
+}
+
+.mechanic-app .booking {
+  padding: 28px 48px 36px;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(
+      ellipse at 100% 100%,
+      rgba(61, 185, 149, 0.09),
+      transparent 45%
+    ),
+    linear-gradient(160deg, #162c35, #10242d);
+}
+
+.mechanic-app .booking-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.mechanic-app .booking-form input {
+  min-height: 48px;
+  padding: 12px 14px;
+}
+
+.mechanic-app .booking-form textarea {
+  grid-column: 1 / -1;
+  min-height: 100px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.mechanic-app .booking-form button {
+  justify-self: start;
+}
+
+.mechanic-app .booking-form p {
+  align-self: center;
+  margin: 0;
+  color: #a4f9cf;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .mechanic-app {
+    padding: 0 12px 36px;
+  }
+
+.mechanic-app > header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 21px 4px;
+  }
+
+.mechanic-app .shell {
+    margin-top: 22px;
+    border-radius: 20px;
+  }
+
+.mechanic-app .intro,
+  .mechanic-app .chat,
+  .mechanic-app .shell > form,
+  .mechanic-app .booking {
+    padding-right: 21px;
+    padding-left: 21px;
+  }
+
+.mechanic-app .intro {
+    padding-top: 33px;
+    padding-bottom: 32px;
+  }
+
+.mechanic-app .chat {
+    min-height: 250px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+
+.mechanic-app .bubble {
+    max-width: 94%;
+  }
+
+.mechanic-app .diagnosis {
+    padding: 22px;
+  }
+
+.mechanic-app .error {
+    margin-right: 21px;
+    margin-left: 21px;
+  }
+
+  .mechanic-app .tools {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 0 21px 25px;
+  }
+
+  .mechanic-app .tools button,
+  .mechanic-app .history {
+    width: auto;
+  }
+
+  .mechanic-app .history {
+    margin-right: 21px;
+    margin-left: 21px;
+  }
+
+.mechanic-app .booking-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .mechanic-app .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+.mechanic-app .actions button,
+  .mechanic-app .actions .upload,
+  .mechanic-app .tools button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mechanic-app button,
+  .mechanic-app .upload,
+  .mechanic-app textarea,
+  .mechanic-app input {
+    transition: none;
+  }
+}

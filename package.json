@@ -1,0 +1,9 @@
+{
+  "name": "ai-car-mechanic-infrastructure",
+  "devDependencies": {
+    "@neon/config": "^1.7.3"
+  },
+  "dependencies": {
+    "@neon/env": "^1.4.4"
+  }
+}

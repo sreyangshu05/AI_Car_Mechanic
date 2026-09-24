@@ -1,7 +1,13 @@
 'use client';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 
-const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+// Accept either the backend origin or its /api root; avoid malformed URLs
+// when the Vercel environment value has a trailing slash.
+const API = (() => {
+  const base = API_BASE.trim().replace(/\/+$/, '');
+  return base.endsWith('/api') ? base : `${base}/api`;
+})();
 type Msg = { role: string; content: string; message_type?: string };
 type History = { id: string; created_at?: string; updated_at?: string; messages: Msg[] };
 

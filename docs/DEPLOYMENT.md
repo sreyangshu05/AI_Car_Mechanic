@@ -47,7 +47,7 @@ Do not paste the API key into chat or commit it. The `production` branch must ex
 
 ## Backend deployment (Render + Neon)
 
-1. Create a Render Web Service from the repository. Set Root Directory to `backend`, Build Command to `pip install -r requirements.txt`, and Start Command to `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`.
+1. Create a Render Web Service from the repository. Set Root Directory to `backend`, Build Command to `pip install -r requirements.txt`, and Start Command to `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`. `backend/runtime.txt` pins Render to Python 3.12.8. If Render still reports Python 3.14, check the service's Environment settings for a `PYTHON_VERSION` override and remove or change it, then trigger **Clear build cache & deploy**.
 2. Create/link the Neon project and production branch. Add the private bucket from root `neon.ts` with `neon deploy` after authenticating and linking. The repository's Neon CLI skill/MCP setup can be initialized with `neon skills -y` and `neon mcp -y --oauth`.
 3. In Render, set `SECRET_KEY` to a new random value, `DEBUG=False`, `ALLOWED_HOSTS=<your-service>.onrender.com`, and `CORS_ALLOWED_ORIGINS=https://<your-frontend>.vercel.app`.
 4. Set `DATABASE_URL` to Neon’s pooled PostgreSQL URL. Keep it in Render's secret environment settings. Require SSL; preserve any query parameters supplied by Neon.
@@ -56,6 +56,8 @@ Do not paste the API key into chat or commit it. The `production` branch must ex
 7. Configure Render Pre-Deploy Command as `python manage.py migrate` (with service root `backend`), or run migrations once from the Render Shell.
 8. Configure HTTPS, health monitoring, logs, and database backups. Confirm the API is reachable, then set Vercel's `NEXT_PUBLIC_API_URL` to `https://<your-service>.onrender.com/api` and deploy the frontend.
 9. Check CORS, uploads to the private Neon bucket, private signed media URLs, diagnosis, and booking with the smoke checks below.
+
+If deployment logs show `ModuleNotFoundError: No module named 'media_uploads'`, confirm `backend/media_uploads/` is present in the pushed Git commit. The `.gitignore` excludes its uploaded files while retaining the Django app source and migrations.
 
 ## Smoke checks after deployment
 

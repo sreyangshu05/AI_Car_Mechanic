@@ -13,8 +13,17 @@ build/
 *.log
 db.sqlite3
 db.sqlite3-journal
-media_uploads/
-media_files/
+backend/media_uploads/*
+!backend/media_uploads/**/
+!backend/media_uploads/__init__.py
+!backend/media_uploads/apps.py
+!backend/media_uploads/models.py
+!backend/media_uploads/urls.py
+!backend/media_uploads/views.py
+!backend/media_uploads/migrations/**
+backend/media_uploads/**/__pycache__/
+backend/media_uploads/**/*.py[cod]
+backend/media_files/
 
 # Virtual environment
 venv/
